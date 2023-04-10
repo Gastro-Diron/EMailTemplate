@@ -29,7 +29,7 @@ public function formatdata (int|string|decimal name, int|string|decimal email, i
                         "verifyEmail": true
                     },
                     "urn:scim:wso2:schema": {
-                        "askPassword": true
+                        "askPassword": false
                     }
                 };
     return data;
