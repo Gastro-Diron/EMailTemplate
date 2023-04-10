@@ -24,7 +24,7 @@ int dbPort = check int:fromString(dbPortStr);
 string scope = "internal_user_mgt_create";
 
 
-http:Client Register = check new ("https://api.asgardeo.io/t/orgwso2/scim2");
+http:Client Register = check new ("https://api.asgardeo.io/t/orgwso2/scim2", httpVersion = http:HTTP_1_1);
 
 mysql:Client dbClient = check new (dbHost, dbUser, dbPassword, dbName, dbPort);
 
