@@ -11,7 +11,7 @@ public function sendEmail(string toemail, string verificationCode) returns strin
         to: [toemail],
         subject: "Verification Email",
         body: "Please enter this code in the application UI to verify your email address:" +
-        "Your code is "+verificationCode+". This verification code will expire in 5 minutes",
+        "Your code is "+verificationCode+". This verification code will expire in 5 minutes.",
         'from: userName
     };
     check smtpClient->sendMessage(email);
