@@ -28,7 +28,7 @@ http:Client Register = check new ("https://api.asgardeo.io/t/orgwso2/scim2", htt
 
 mysql:Client dbClient = check new (dbHost, dbUser, dbPassword, dbName, dbPort);
 
-service on new http:Listener (9090){
+service /flow1 on new http:Listener (9090){
     
     resource function post users (@http:Payload UserEntry userEntry) returns string|error|ConflictingEmailsError {
         string toemail = userEntry.email;
