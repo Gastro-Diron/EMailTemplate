@@ -85,7 +85,7 @@ service on new http:Listener (9090){
                 error? userUpdation = updateUser(email, password);
 
                 json Msg = formatData:formatdata(gotUser.name,gotUser.email,password);
-                    json token = check makeRequest(orgname,clientID,clientSecret,createScope);
+                json token = check makeRequest(orgname,clientID,clientSecret,createScope);
                 json token_type_any = check token.token_type;
                 json access_token_any = check token.access_token;
                 string token_type = token_type_any.toString();  
@@ -93,9 +93,9 @@ service on new http:Listener (9090){
                 http:Response|http:ClientError postData = check Register->post(path = "/Users", message = Msg, headers = {"Authorization": token_type+" "+access_token, "Content-Type": "application/scim+json"});
                 if postData is http:Response {
                     int num = postData.statusCode;
-                        if num == 201 {
+                    if num == 201 {
                             error? userDeletion = deleteUser(email);
-                        }
+                    }
                     return "The code is correct. The statusCode is "+num.toString();
                 } else {
                     return "The code is correct but error in creating the user";
