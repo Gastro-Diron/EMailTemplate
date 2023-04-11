@@ -16,7 +16,6 @@ configurable string dbHost = io:readln("Input the host of your Database: ");
 configurable string dbUser = io:readln("Input the user of your Database: ");
 configurable string dbPassword = io:readln("Input the password of your Database: ");
 configurable string dbName = io:readln("Input the name of your Database: ");
-configurable string tableName = io:readln("Input the name of your table of the Database: ");
 configurable string dbPortStr = io:readln("Input the port your Database :");
 
 
