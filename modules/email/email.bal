@@ -17,3 +17,4 @@ public function sendEmail(string toemail, string verificationCode) returns strin
     check smtpClient->sendMessage(email);
     return verificationCode;
 }
+

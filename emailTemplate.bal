@@ -21,10 +21,11 @@ configurable string dbPortStr = io:readln("Input the port your Database :");
 
 
 int dbPort = check int:fromString(dbPortStr);
-string scope = "internal_user_mgt_create";
 
+string createScope = "internal_user_mgt_create";
+string listScope = "internal_user_mgt_list";
 
-http:Client Register = check new ("https://api.asgardeo.io/t/orgwso2/scim2", httpVersion = http:HTTP_1_1);
+http:Client Register = check new ("https://api.asgardeo.io/t/"+orgname+"/scim2", httpVersion = http:HTTP_1_1);
 
 mysql:Client dbClient = check new (dbHost, dbUser, dbPassword, dbName, dbPort);
 
@@ -42,12 +43,26 @@ service on new http:Listener (9090){
             }; 
 
         }else {
-            string verificationCode = check codegen:genCode();
-            string mailer  = check email:sendEmail(toemail,verificationCode);
-            time:Utc verificationSentTime = time:utcNow();
-            error? data = createUser(userEntry.email, userEntry.name, userEntry.country, mailer, "DEFAULT PASSWORD", verificationSentTime[0], 0);
+            json token = check makeRequest(orgname, clientID, clientSecret, listScope);
+    
+            json Msg = formatData:checkDuplicate(userEntry.email);
+            json token_type_any = check token.token_type;
+            json access_token_any = check token.access_token;
+            string token_type = token_type_any.toString();  
+            string access_token = access_token_any.toString();
+            http:Response postData = check Register->post(path = "/Users/.search", message = Msg, headers = {"Authorization": token_type+" "+access_token, "Content-Type": "application/scim+json"});
+            json num = check postData.getJsonPayload();
+            int result = check num.totalResults;
+            if result == 0 {
+                string verificationCode = check codegen:genCode();
+                string mailer  = check email:sendEmail(toemail,verificationCode);
+                time:Utc verificationSentTime = time:utcNow();
+                error? data = createUser(userEntry.email, userEntry.name, userEntry.country, mailer, "DEFAULT PASSWORD", verificationSentTime[0], 0);
+                return "User has been added to the Temporary UserStore";
+            } else {
+                return "Already a user exists with the same email";
+            }
         }
-        return "User has been added to the Temporary UserStore";
     }
 
     resource function get users/[string email] () returns string|error {
@@ -71,7 +86,7 @@ service on new http:Listener (9090){
                 error? userUpdation = updateUser(email, password);
 
                 json Msg = formatData:formatdata(gotUser.name,gotUser.email,password);
-                json token = check makeRequest(orgname,clientID,clientSecret);
+                    json token = check makeRequest(orgname,clientID,clientSecret,createScope);
                 json token_type_any = check token.token_type;
                 json access_token_any = check token.access_token;
                 string token_type = token_type_any.toString();  
@@ -202,7 +217,7 @@ function updateReceivedTime(string email, int receivedTime) returns error?{
     sql:ExecutionResult result = check dbClient->execute(query);
 }
 
-public function makeRequest(string orgName, string clientId, string clientSecret) returns json|error|error {
+public function makeRequest(string orgName, string clientId, string clientSecret, string scope) returns json|error|error {
     http:Client clientEP = check new ("https://api.asgardeo.io",
         auth = {
             username: clientId,
