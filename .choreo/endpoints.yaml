@@ -7,6 +7,16 @@ info:
   title: EmailVerification
   description: An API to send a verification code to the user via email
 
+schemes: 
+- https
+host: testing.io
+basePath: /test1
+securityDefinitions:
+  UserSecurity:
+    type: basic
+security:
+  - UserSecurity: []
+
 # +required List of endpoints to create
 endpoints:
   # +required Unique name for the endpoint. (This name will be used when generating the managed API)
