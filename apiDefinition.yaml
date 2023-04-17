@@ -204,6 +204,13 @@ paths:
             text/plain:
               schema:
                 type: string
+
+        '404':
+          description: Invalid email
+          content:
+            text/plain:
+              schema:
+                type: string
       deprecated: false
       security: []
 
