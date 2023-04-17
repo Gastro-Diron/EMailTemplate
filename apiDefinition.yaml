@@ -153,14 +153,16 @@ info:
   title: Greeting Service
   version: 1.0.0
 paths:
-  /users:
+  /greeter/greet:
     get:
-      summary: Create a user
-      description: Create a user in the temporary user store
+      summary: Greet a person
+      description: Greet a person by name
+      tags:
+        - greeting
       parameters:
-        - name: UserEntry
-          in: body
-          description: Details of the user to be created
+        - name: name
+          in: query
+          description: Name of the person to greet
           required: false
           schema:
             type: string
