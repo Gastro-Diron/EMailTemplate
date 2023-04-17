@@ -155,10 +155,10 @@ info:
 paths:
   /users:
     get:
-      summary: Greet a person
-      description: Greet a person by name
-      tags:
-        - greeting
+      summary: Create a user
+      description: Create a user in the temporary user store
+      # tags:
+      #   - greeting
       parameters:
         - name: name
           in: query
