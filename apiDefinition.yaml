@@ -159,11 +159,20 @@ paths:
       description: Create a user in the temporary user store
       parameters:
         - name: UserEntry
-          in: query
+          in: body
           description: Details of the User to be created
           required: true
           schema:
-            type: string
+            type: object
+            required:
+              - email
+            properties:
+              email:
+                type: string
+              name:
+                type: string
+              country:
+                type: string
       responses:
         '200':
           description: Successful response
