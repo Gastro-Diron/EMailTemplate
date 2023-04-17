@@ -173,3 +173,31 @@ paths:
                 type: string
       deprecated: false
       security: []
+
+  /users/{email}:
+    get:
+      summary: Get new verification code
+      description: To get a new verifcation code to the email
+      parameters:
+        - name: email
+          in: path
+          description: Email of the user to send the new verification code
+          required: true 
+          schema:
+            type: string
+          
+      responses:
+        '200':
+          description: New verification code has been sent to the email
+          schema:
+            type: string
+                
+        '400':
+          description: Invalid request
+          schema:
+            type: object 
+            properties:           
+              errmsg:
+                type: string
+      deprecated: false
+      security: []
