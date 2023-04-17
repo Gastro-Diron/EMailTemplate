@@ -154,7 +154,7 @@ info:
   version: 1.0.0
 paths:
   /users:
-    post:
+    get:
       summary: Create a user
       description: Create a user in the temporary user store
       parameters:
