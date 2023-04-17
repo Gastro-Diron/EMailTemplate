@@ -163,16 +163,7 @@ paths:
           description: Details of the User to be created
           required: true
           schema:
-            type: object
-            required:
-              - email
-            properties:
-              email:
-                type: string
-              name:
-                type: string
-              country:
-                type: string
+            type: string
       responses:
         '200':
           description: Successful response
