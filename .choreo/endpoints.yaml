@@ -21,5 +21,34 @@ endpoints:
   # The path should be relative to the docker context.
   # schemaFilePath: emailVerificationDefinition.yaml
   methods:
-    - POST
-    
+    post:
+        description: Create a new user in the temporary user store
+        parameters:
+          - name: UserEntry
+            in: body
+            description: creates a new user in the temporary database
+            schema:
+              type: object
+              required:
+                - email
+              properties:
+                email:
+                  type: string
+                name:
+                  type: string
+                country:
+                  type: string
+                  
+        responses:
+          200:
+            description: Successfully created a new artist
+            schems:
+              type: string
+            
+          400:
+            description: Invalid request 
+            schema:
+              type: object
+              properties:   
+                errmsg:
+                  type: string
