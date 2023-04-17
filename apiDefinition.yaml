@@ -1,17 +1,19 @@
-swagger: '2.0'
+openapi: '3.0.0'
 info:
   version: 1.0.0
-  title: emailVerification
+  title: Email Verification
   description: An API to send a verification code to the user via email
 
 paths:
   /users:
     post:
+      summary: Create a user
       description: Create a new user in the temporary user store
       parameters:
         - name: UserEntry
           in: body
           description: creates a new user in the temporary database
+          required: true
           schema:
             type: object
             required:
@@ -25,12 +27,12 @@ paths:
                 type: string
                 
       responses:
-        200:
+        '200':
           description: Successfully created a new artist
           schems:
             type: string
           
-        400:
+        '400':
           description: Invalid request 
           schema:
             type: object
