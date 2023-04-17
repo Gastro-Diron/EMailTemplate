@@ -158,6 +158,27 @@ paths:
       summary: Create a user
       description: Create a user in the temporary user store
       parameters:
+        - name: UserEntry
+          in: query
+          description: Details of the User to be created
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response
+          content:
+            text/plain:
+              schema:
+                type: string
+      deprecated: false
+      security: []
+
+  /users/{email}:
+    post:
+      summary: Create a user
+      description: Create a user in the temporary user store
+      parameters:
         - name: email
           in: path
           description: Details of the User to be created
