@@ -154,16 +154,14 @@ info:
   version: 1.0.0
 paths:
   /users:
-    get:
+    post:
       summary: Create a user
       description: Create a user in the temporary user store
-      # tags:
-      #   - greeting
       parameters:
-        - name: name
-          in: query
-          description: Name of the person to greet
-          required: false
+        - name: UserEntry
+          in: body
+          description: Details of the user to be created
+          required: true
           schema:
             type: string
       responses:
@@ -172,6 +170,15 @@ paths:
           content:
             text/plain:
               schema:
-                type: string
+                type: object
+                required:
+                  - email
+                properties:
+                  email:
+                    type: string
+                  name:
+                    type: string
+                  country:
+                    type: string
       deprecated: false
       security: []
