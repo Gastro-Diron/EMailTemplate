@@ -198,6 +198,40 @@ paths:
           schema:
             type: string
       responses:
+        '201':
+          description: Data entry created successfully
+          content:
+            text/plain:
+              schema:
+                type: string
+
+        '404':
+          description: Resource not found
+          content:
+            text/plain:
+              schema:
+                type: string
+
+        '409':
+          description: Conflict in the request
+          content:
+            text/plain:
+              schema:
+                type: string
+      deprecated: false
+      security: []
+
+    delete:
+      summary: Delete the user
+      description: Delete the user from the temporary user store
+      parameters:
+        - name: email
+          in: path
+          description: Email of the user who has to be created in Asgardeo
+          required: true
+          schema:
+            type: string
+      responses:
         '200':
           description: Successful response
           content:
@@ -206,7 +240,7 @@ paths:
                 type: string
 
         '404':
-          description: Invalid email
+          description: Resource not found
           content:
             text/plain:
               schema:
