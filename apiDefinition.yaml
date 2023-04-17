@@ -161,7 +161,7 @@ paths:
         - name: UserEntry
           in: body
           description: Details of the user to be created
-          required: true
+          required: false
           schema:
             type: string
       responses:
