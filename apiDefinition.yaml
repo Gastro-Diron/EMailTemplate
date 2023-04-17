@@ -150,20 +150,18 @@
 
 openapi: "3.0.0"
 info:
-  title: Greeting Service
+  title: Email Verification
   version: 1.0.0
 paths:
-  /greeter/greet:
+  /users:
     get:
-      summary: Greet a person
-      description: Greet a person by name
-      tags:
-        - greeting
+      summary: Create a user
+      description: Create a user in the temporary user store
       parameters:
-        - name: name
-          in: query
-          description: Name of the person to greet
-          required: false
+        - name: UserEntry
+          in: body
+          description: Details of the User to be created
+          required: true
           schema:
             type: string
       responses:
