@@ -158,7 +158,7 @@ paths:
       summary: Create a user
       description: Create a user in the temporary user store
       parameters:
-        - name: name
+        - name: UserEntry
           in: body
           description: Details of the User to be created
           required: false
