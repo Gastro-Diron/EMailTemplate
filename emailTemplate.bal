@@ -79,7 +79,7 @@ service on new http:Listener (9090){
         }
     }
 
-    resource function post users/[string email] (string password, @http:Header string passKey) returns string|InvalidEmailError|error{
+    resource function post users/[string email] (string password, string passKey) returns string|InvalidEmailError|error{
         FullUser|error gotUser = getUser(email);
             if gotUser is FullUser {
                 if passKey == gotUser.code{
@@ -102,7 +102,7 @@ service on new http:Listener (9090){
                         return "The code is correct but error in creating the user";
                     }
                 } else {
-                    return "Unauthorized Header";
+                    return "Incorrect passKey";
                 }
                 
             } else {
