@@ -6,6 +6,16 @@ info:
   title: EmailVerification
   description: An API to send a verification code to the user via email
 
+schemes: 
+- https
+host: testing.io
+basePath: /flow1
+securityDefinitions:
+  UserSecurity:
+    type: basic
+security:
+  - UserSecurity: []
+
 paths:
     /users:
       post:
