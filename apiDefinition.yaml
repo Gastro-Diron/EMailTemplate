@@ -161,24 +161,24 @@ paths:
         - name: UserEntry
           in: body
           description: Details of the user to be created
-          required: true
+          required: false
           schema:
-            type: string
+            type: object
+            required:
+              - email
+            properties:
+              email:
+                type: string
+              name:
+                type: string
+              country:
+                type: string
       responses:
         '200':
           description: Successful response
           content:
             text/plain:
               schema:
-                type: object
-                required:
-                  - email
-                properties:
-                  email:
-                    type: string
-                  name:
-                    type: string
-                  country:
-                    type: string
+                type: string
       deprecated: false
       security: []
