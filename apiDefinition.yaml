@@ -158,8 +158,8 @@ paths:
       summary: Create a user
       description: Create a user in the temporary user store
       parameters:
-        - name: UserEntry
-          in: query
+        - name: email
+          in: path
           description: Details of the User to be created
           required: true
           schema:
