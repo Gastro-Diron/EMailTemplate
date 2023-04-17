@@ -4,7 +4,7 @@ version: 0.1
 # +required List of endpoints to create
 endpoints:
   # +required Unique name for the endpoint. (This name will be used when generating the managed API)
-- name: EMailVerification
+- name: EmailVerification
   # +required Numeric port value that gets exposed via this endpoint
   port: 9090
   # +required Type of the traffic this endpoint is accepting. Example: REST, GraphQL, etc.
@@ -19,36 +19,4 @@ endpoints:
   # +optional Path to the schema definition file. Defaults to wild card route if not provided
   # This is only applicable to REST endpoint types.
   # The path should be relative to the docker context.
-  # schemaFilePath: emailVerificationDefinition.yaml
-  methods:
-    post:
-        description: Create a new user in the temporary user store
-        parameters:
-          - name: UserEntry
-            in: body
-            description: creates a new user in the temporary database
-            schema:
-              type: object
-              required:
-                - email
-              properties:
-                email:
-                  type: string
-                name:
-                  type: string
-                country:
-                  type: string
-                  
-        responses:
-          200:
-            description: Successfully created a new artist
-            schems:
-              type: string
-            
-          400:
-            description: Invalid request 
-            schema:
-              type: object
-              properties:   
-                errmsg:
-                  type: string
+  schemaFilePath: emailVerificationDefinition.yaml
