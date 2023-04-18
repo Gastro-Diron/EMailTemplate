@@ -182,9 +182,12 @@ paths:
         '409':
           description: Conflict
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                type: object
+                properties:
+                  errmsg:
+                    type: string
 
         '500':
           description: Internal Server Error
@@ -278,9 +281,12 @@ paths:
         '409':
           description: Conflict in the request
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                type: object
+                properties:
+                  errmsg:
+                    type: string
 
         '500':
           description: Internal Server Error
