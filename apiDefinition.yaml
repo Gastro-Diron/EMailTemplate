@@ -218,9 +218,12 @@ paths:
         '404':
           description: Not found
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                type: object
+                properties:
+                  errmsg:
+                    type: string
 
         '500':
           description: Internal Server Error
@@ -265,9 +268,12 @@ paths:
         '404':
           description: Not found
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                type: object
+                properties:
+                  errmsg:
+                    type: string
 
         '409':
           description: Conflict in the request
@@ -307,9 +313,12 @@ paths:
         '404':
           description: Not found
           content:
-            text/plain:
+            application/json:
               schema:
-                type: string
+                type: object
+                properties:
+                  errmsg:
+                    type: string
 
         '500':
           description: Internal Server Error
