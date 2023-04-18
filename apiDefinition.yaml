@@ -164,13 +164,13 @@ paths:
               type: object
               required:
               - email
-            properties:
-              email:
-                type: string
-              name:
-                type: string
-              country:
-                type: string
+              properties:
+                email:
+                  type: string
+                name:
+                  type: string
+                country:
+                  type: string
       responses:
         '200':
           description: OK
