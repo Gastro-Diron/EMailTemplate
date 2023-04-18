@@ -172,12 +172,27 @@ paths:
                 country:
                   type: string
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             text/plain:
               schema:
                 type: string
+
+        '409':
+          description: Conflict
+          content:
+            text/plain:
+              schema:
+                type: string
+
+        '500':
+          description: Internal Server Error
+          content:
+            text/plain:
+              schema:
+                type: string
+
       deprecated: false
       security: []
 
@@ -206,6 +221,14 @@ paths:
             text/plain:
               schema:
                 type: string
+
+        '500':
+          description: Internal Server Error
+          content:
+            text/plain:
+              schema:
+                type: string
+
       deprecated: false
       security: []
 
@@ -233,7 +256,7 @@ paths:
             type: string
       responses:
         '201':
-          description: Data entry created successfully
+          description: Created
           content:
             text/plain:
               schema:
@@ -252,6 +275,14 @@ paths:
             text/plain:
               schema:
                 type: string
+
+        '500':
+          description: Internal Server Error
+          content:
+            text/plain:
+              schema:
+                type: string
+
       deprecated: false
       security: []
 
@@ -279,6 +310,52 @@ paths:
             text/plain:
               schema:
                 type: string
+
+        '500':
+          description: Internal Server Error
+          content:
+            text/plain:
+              schema:
+                type: string
+
+      deprecated: false
+      security: []
+
+  /verify:
+    post:
+      summary: Poset the verification code
+      description: Post the verification code to the database to check
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - email
+              properties:
+                email:
+                  type: string
+                code:
+                  type: string
+
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+
+        '500':
+          description: Internal Server Error
+          content:
+            text/plain:
+              schema:
+                type: string
+
       deprecated: false
       security: []
 
