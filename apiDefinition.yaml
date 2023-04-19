@@ -56,7 +56,7 @@ paths:
       parameters:
         - name: email
           in: path
-          description: Email of the user who has to be created in Asgardeo
+          description: Email of the user
           required: true
           schema:
             type: string
@@ -154,7 +154,7 @@ paths:
       parameters:
         - name: email
           in: path
-          description: Email of the user who has to be created in Asgardeo
+          description: Email of the user 
           required: true
           schema:
             type: string
